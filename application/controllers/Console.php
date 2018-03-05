@@ -13,6 +13,7 @@ class Console extends CI_Controller
         $this->load->model('mod_product');
         $this->load->model('mod_order');
         $this->load->model('mod_contact');
+        $this->load->model('mod_news');
     }
 
     // 後台登入頁面
@@ -118,7 +119,7 @@ class Console extends CI_Controller
                         $dataArray['id'] = uniqid();
                         $dataArray['password'] = sha1($dataArray['password']);
                         $dataArray['create_date'] = date('Y-m-d');
-                        $dataArray['create_time'] = date('H-i-s');
+                        $dataArray['create_time'] = date('H:i:s');
 
                         if ($this->mod_manager->insert($dataArray)) {
                             $view_data['sys_code'] = 200;
@@ -250,7 +251,7 @@ class Console extends CI_Controller
                         $dataArray['id'] = uniqid();
                         $dataArray['password'] = sha1($dataArray['password']);
                         $dataArray['create_date'] = date('Y-m-d');
-                        $dataArray['create_time'] = date('H-i-s');
+                        $dataArray['create_time'] = date('H:i:s');
 
                         if ($this->mod_member->insert($dataArray)) {
                             $view_data['sys_code'] = 200;
@@ -514,7 +515,7 @@ class Console extends CI_Controller
                 'feature' => $this->input->post('feature'),
             );
 
-            //商品主圖上傳
+            // 商品主圖上傳
             /*if ($_FILES['main_photo_file']['type']) {
             $dataArray['main_photo'] = 'photos/' . uniqid();
 
@@ -669,6 +670,172 @@ class Console extends CI_Controller
             $this->load->view('console/layout', $view_data);
         } else {
             redirect(base_url('console/contact'));
+        }
+    }
+    /* ************************************ *
+     *                                      *
+     *                News                  *
+     *                                      *
+     * ************************************ */
+    // 消息列表
+    public function news_list()
+    {
+        // 頁面資訊
+        $view_data = array(
+            'title' => "Shoper - Console News",
+            'path' => 'console/news',
+            'page' => 'news_list.php',
+            'menu' => 'news',
+        );
+
+        $view_data['list'] = $this->mod_news->get_all();
+        $view_data['total'] = $this->mod_news->get_total();
+        $view_data['pagination'] = $this->pagination($view_data['path'], $view_data['total'], 10);
+        $this->load->view('console/layout', $view_data);
+    }
+
+    // 新增消息
+    public function news_insert()
+    {
+        // 頁面資訊
+        $view_data = array(
+            'title' => "Shoper - Console News",
+            'path' => 'console/news/insert',
+            'page' => 'news_insert.php',
+            'menu' => 'news',
+        );
+
+        if ($this->input->post('rule') == 'insert') {
+            $dataArray = array(
+                'title' => $this->input->post('title'),
+                'description' => $this->input->post('description'),
+                'create_date' => date('Y-m-d'),
+                'create_time' => date('H:i:s'),
+                'release_date' => $this->input->post('release_date'),
+                'release_time' => $this->input->post('release_time'),
+            );
+
+            // 消息圖片上傳
+            if ($_FILES['image']['type']) {
+                $dataArray['image'] = 'photos/' . uniqid();
+
+                if ($_FILES['image']['type'] == 'image/png' || $_FILES['image']['type'] == 'image/jpeg' || $_FILES['image']['type'] == 'image/jpg') {
+                    if ($_FILES['image']['type'] == 'image/png') {
+                        $dataArray['image'] = $dataArray['image'] . '.png';
+                    } else {
+                        $dataArray['image'] = $dataArray['image'] . '.jpg';
+                    }
+
+                    if (!file_exists('photos')) {
+                        mkdir('photos', 0777, true);
+                    }
+
+                    if (copy($_FILES['image']['tmp_name'], $dataArray['image'])) {
+                        $view_data['sys_code'] = 200;
+                        $view_data['sys_msg'] = '圖片新增成功！';
+                    } else {
+                        $view_data['sys_code'] = 500;
+                        $view_data['sys_msg'] = '圖片新增失敗！';
+                    }
+                } else {
+                    $view_data['sys_code'] = 404;
+                    $view_data['sys_msg'] = '檔案格式不符合！';
+                }
+            }
+
+            if ($dataArray['title'] != '' && $dataArray['description'] != '' && $dataArray['release_date'] != '' && $dataArray['release_time'] != '') {
+                $dataArray['id'] = uniqid();
+
+                if ($this->mod_news->insert($dataArray)) {
+                    $view_data['sys_code'] = 200;
+                    $view_data['sys_msg'] = '新增成功！';
+                    redirect(base_url('console/news'));
+                } else {
+                    $view_data['sys_code'] = 404;
+                    $view_data['sys_msg'] = '新增失敗，發生錯誤！';
+                }
+            } else {
+                $view_data['sys_code'] = 404;
+                $view_data['sys_msg'] = '您的表單尚未填寫完成！';
+            }
+        }
+
+        $this->load->view('console/layout', $view_data);
+    }
+
+    // 更新消息
+    public function news_update($id)
+    {
+        // 頁面資訊
+        $view_data = array(
+            'title' => "Shoper - Console News",
+            'path' => 'console/news/update/' . $id,
+            'page' => 'news_update.php',
+            'menu' => 'news',
+        );
+
+        if ($this->input->post('rule') == 'update') {
+            $id = $this->input->post('id');
+
+            $dataArray = array(
+                'title' => $this->input->post('title'),
+                'description' => $this->input->post('description'),
+                'release_date' => $this->input->post('release_date'),
+                'release_time' => $this->input->post('release_time'),
+            );
+
+            // 消息圖片上傳
+            if ($_FILES['image']['type']) {
+                $dataArray['image'] = 'photos/' . uniqid();
+
+                if ($_FILES['image']['type'] == 'image/png' || $_FILES['image']['type'] == 'image/jpeg' || $_FILES['image']['type'] == 'image/jpg') {
+                    if ($_FILES['image']['type'] == 'image/png') {
+                        $dataArray['image'] = $dataArray['image'] . '.png';
+                    } else {
+                        $dataArray['image'] = $dataArray['image'] . '.jpg';
+                    }
+
+                    if (!file_exists('photos')) {
+                        mkdir('photos', 0777, true);
+                    }
+
+                    if (copy($_FILES['image']['tmp_name'], $dataArray['image'])) {
+                        //$view_data['sys_code'] = 200;
+                        //$view_data['sys_msg'] = '圖片新增成功！';
+                        echo '1';
+                    } else {
+                        //$view_data['sys_code'] = 500;
+                        //$view_data['sys_msg'] = '圖片新增失敗！';
+                        echo '2';
+                    }
+                } else {
+                    //$view_data['sys_code'] = 404;
+                    //$view_data['sys_msg'] = '檔案格式不符合！';
+                    echo '3';
+                }
+            }
+
+            if ($dataArray['title'] != '' && $dataArray['description'] != '' && $dataArray['release_date'] != '' && $dataArray['release_time'] != '') {
+                if ($this->mod_news->update($id, $dataArray)) {
+                    $view_data['sys_code'] = 200;
+                    $view_data['sys_msg'] = '更新成功!';
+                    redirect(base_url('console/news'));
+                } else {
+                    $view_data['sys_code'] = 404;
+                    $view_data['sys_msg'] = '更新失敗，發生錯誤！';
+                }
+            } else {
+                $view_data['sys_code'] = 404;
+                $view_data['sys_msg'] = '您的表單尚未填寫完成！';
+            }
+        }
+
+        $view_data['res'] = $this->mod_news->get_once($id);
+
+        if ($view_data['res']) {
+            $this->load->view('console/layout', $view_data);
+        } else {
+            redirect(base_url('console/news'));
         }
     }
     /* ************************************ *

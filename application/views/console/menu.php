@@ -6,6 +6,12 @@
 				控制台
 			</a>
 		</li>
+		<li class="sliderMenuItem <?php if($menu == 'news') { echo 'menuActive'; } ?>">
+			<a href="console/news">
+				<i class="icon newspaper"></i>
+				最新消息
+			</a>
+		</li>
 		<li class="sliderMenuItem <?php if($menu == 'manager') { echo 'menuActive'; } ?>">
 			<a href="console/manager">
 				<i class="icon spy"></i>

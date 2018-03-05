@@ -12,6 +12,7 @@ class Api_console extends CI_Controller
         $this->load->model('mod_category');
         $this->load->model('mod_product');
         $this->load->model('mod_contact');
+        $this->load->model('mod_news');
     }
 
     // 刪除管理員
@@ -240,6 +241,22 @@ class Api_console extends CI_Controller
         $id = $this->input->post('id');
 
         if ($this->mod_contact->delete($id)) {
+            $dataResponse['sys_code'] = 200;
+            $dataResponse['sys_msg'] = '刪除成功！';
+        } else {
+            $dataResponse['sys_code'] = 404;
+            $dataResponse['sys_msg'] = '發生錯誤，刪除失敗！';
+        }
+
+        echo json_encode($dataResponse);
+    }
+
+    // 刪除消息
+    public function delete_news()
+    {
+        $id = $this->input->post('id');
+
+        if ($this->mod_news->delete($id)) {
             $dataResponse['sys_code'] = 200;
             $dataResponse['sys_msg'] = '刪除成功！';
         } else {

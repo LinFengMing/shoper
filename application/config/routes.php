@@ -50,6 +50,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['index'] = 'welcome/index';
+$route['news'] = 'welcome/news';
+$route['about'] = 'welcome/about';
+$route['products/(:any)'] = 'welcome/products/$1';
 
 $route['console'] = 'console/index';
 $route['console/login'] = 'console/login';
@@ -76,6 +79,10 @@ $route['console/order/details/(:any)'] = 'console/order_details/$1';
 
 $route['console/contact'] = 'console/contact_list';
 $route['console/contact/details/(:any)'] = 'console/contact_details/$1';
+
+$route['console/news'] = 'console/news_list';
+$route['console/news/insert'] = 'console/news_insert';
+$route['console/news/update/(:any)'] = 'console/news_update/$1';
 
 /*$route['api_console/delete_manager'] = 'api_console/delete_manager';
 $route['api_console/delete_member'] = 'api_console/delete_member';

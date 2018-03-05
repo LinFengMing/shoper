@@ -20,6 +20,18 @@ class Mod_product extends CI_Model
         return $this->db->get('product_main')->result_array();
     }
 
+    // 取得分類商品清單
+    public function get_category_all($id)
+    {
+        if ($id != 'all') {
+            $this->db->where('category', $id);
+        }
+
+        $this->db->join('category_main', 'category_main.id = product_main.category');
+        $res = $this->db->get('product_main')->result_array();
+        return $res;
+    }
+
     // 取得特定商品
     public function get_once($id)
     {
@@ -41,6 +53,27 @@ class Mod_product extends CI_Model
     public function get_total()
     {
         return $this->db->count_all_results('product_main');
+    }
+
+    // 取得分類商品總筆數
+    public function get_category_total($id)
+    {
+        if ($id != 'all') {
+            $this->db->where('category', $id);
+        }
+
+        return $this->db->count_all_results('product_main');
+    }
+
+    // 取得分類商品總筆數
+    public function get_category_products_total($res)
+    {
+        foreach ($res as $key => $value) {
+            $this->db->where('category', $value['id']);
+            $res[$key]['total'] = $this->db->count_all_results('product_main');
+        }
+
+        return $res;
     }
 
     // 新增商品

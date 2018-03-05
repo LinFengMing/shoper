@@ -4,6 +4,8 @@ class Mod_category extends CI_Model
     public function __construct()
     {
         parent::__construct();
+
+        $this->load->model('mod_product');
     }
 
     // 取得分類
@@ -24,7 +26,8 @@ class Mod_category extends CI_Model
     // 取得分類清單
     public function get_all()
     {
-        return $this->db->get('category_main')->result_array();
+        $res = $this->db->get('category_main')->result_array();
+        return $this->mod_product->get_category_products_total($res);
     }
 
     // 取得特定分類

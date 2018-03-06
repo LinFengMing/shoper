@@ -11,8 +11,8 @@ class Mod_category extends CI_Model
     // 取得分類
     public function get_once_by_type($type)
     {
-        $this->db->where('type', $type);
-        return $this->db->get('category_main')->row_array();
+        $res = $this->db->where('type', $type);
+        return $this->db->get('category_main')->row_array($res);
     }
 
     // 確認分類是否重複

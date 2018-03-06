@@ -5,15 +5,15 @@
 				<?php if($category_link == 'all') { ?>
 				<div class="item active">
 					全部
-					<div class="ui teal left pointing label"><?=$total;?></div>
+					<div class="ui teal left pointing label"><?=$total_all;?></div>
 				</div>
 				<?php }else{ ?>
 				<a href="products/all" class="item">
 					全部
-					<div class="ui left pointing label"><?=$total;?></div>
+					<div class="ui left pointing label"><?= $total_all;?></div>
 				</a>
 				<?php } ?>
-			
+
 				<?php foreach ($category as $kCategory => $vCategory) { ?>
 					<?php if($category_link == $vCategory['id']) { ?>
 					<div class="item active">

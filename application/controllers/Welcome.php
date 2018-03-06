@@ -84,10 +84,12 @@ class Welcome extends CI_Controller
         );
 
         $view_data['category_link'] = $id;
+        $view_data['total_all'] = $this->mod_product->get_online_total();
         $view_data['category'] = $this->mod_category->get_all();
         $view_data['list'] = $this->mod_product->get_category_all($id);
-        $view_data['total'] = $this->mod_product->get_category_total($id);
-        $view_data['pagination'] = $this->pagination($view_data['path'], $view_data['total'], 10);
+
+        //$view_data['total'] = $this->mod_product->get_total();
+        //$view_data['pagination'] = $this->pagination($view_data['path'], $view_data['total'], 10);
         $this->load->view('layout', $view_data);
     }
     /* ************************************ *

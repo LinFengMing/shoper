@@ -20,11 +20,15 @@ class Mod_product extends CI_Model
         return $this->db->get('product_main')->result_array();
     }
 
-    // 取得分類商品清單
+    // 取得分類上架商品清單
     public function get_category_all($id)
     {
         if ($id != 'all') {
             $this->db->where('category', $id);
+            $this->db->where('online', 1);
+        }else {
+            $this->db->where('online', 1);
+
         }
 
         $this->db->join('category_main', 'category_main.id = product_main.category');
@@ -40,11 +44,11 @@ class Mod_product extends CI_Model
         return $this->db->get('product_main')->row_array();
     }
 
-    // 取得精選商品
+    // 取得上架精選商品
     public function get_feature()
     {
         $this->db->where('feature', 1);
-        $this->db->where('online !=', 1);
+        $this->db->where('online', 1);
 
         return $this->db->get('product_main')->result_array();
     }
@@ -55,21 +59,21 @@ class Mod_product extends CI_Model
         return $this->db->count_all_results('product_main');
     }
 
-    // 取得分類商品總筆數
-    public function get_category_total($id)
+    // 取得上架商品總筆數
+    public function get_online_total()
     {
-        if ($id != 'all') {
-            $this->db->where('category', $id);
-        }
+        $this->db->where('online', 1);
 
         return $this->db->count_all_results('product_main');
     }
 
-    // 取得分類商品總筆數
+    // 取得各分類上架商品總筆數
     public function get_category_products_total($res)
     {
         foreach ($res as $key => $value) {
             $this->db->where('category', $value['id']);
+            $this->db->where('online', 1);
+
             $res[$key]['total'] = $this->db->count_all_results('product_main');
         }
 

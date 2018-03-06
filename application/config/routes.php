@@ -53,6 +53,7 @@ $route['index'] = 'welcome/index';
 $route['news'] = 'welcome/news';
 $route['about'] = 'welcome/about';
 $route['products/(:any)'] = 'welcome/products/$1';
+$route['product/(:any)'] = 'welcome/product/$1';
 
 $route['console'] = 'console/index';
 $route['console/login'] = 'console/login';

@@ -19,27 +19,27 @@ class Welcome extends CI_Controller
      */
     public function __construct()
     {
-		parent::__construct();
+        parent::__construct();
 
         $this->load->model('mod_category');
         $this->load->model('mod_product');
         $this->load->model('mod_news');
-	}
+    }
 
-	// 前台首頁
-	public function index()
-	{
+    // 前台首頁
+    public function index()
+    {
         // 頁面資訊
-		$view_data = array(
-			'title' => "Shoper",
-			'path' => 'index',
-			'page' => 'store.php',
-			'menu' => 'index',
-		);
+        $view_data = array(
+            'title' => "Shoper",
+            'path' => 'index',
+            'page' => 'store.php',
+            'menu' => 'index',
+        );
 
-		$view_data['feature'] = $this->mod_product->get_feature();
+        $view_data['feature'] = $this->mod_product->get_feature();
 
-		$this->load->view('layout', $view_data);
+        $this->load->view('layout', $view_data);
     }
 
     // 最新消息
@@ -78,19 +78,49 @@ class Welcome extends CI_Controller
         // 頁面資訊
         $view_data = array(
             'title' => "Shoper - Products",
-            'path' => 'products',
+            'path' => 'products' . '/' . $id,
             'page' => 'products.php',
             'menu' => 'products',
         );
 
+        $limit = 10;
+
+        if ($this->input->get('per_page')) {
+            $pervious = $this->input->get('per_page');
+        } else {
+            $pervious = 1;
+        }
+
         $view_data['category_link'] = $id;
         $view_data['total_all'] = $this->mod_product->get_online_total();
         $view_data['category'] = $this->mod_category->get_all();
-        $view_data['list'] = $this->mod_product->get_category_all($id);
+        $view_data['list'] = $this->mod_product->get_category_products_all($id, $limit, $pervious);
+        $view_data['total'] = $this->mod_product->get_category_products_total($id);
 
-        //$view_data['total'] = $this->mod_product->get_total();
-        //$view_data['pagination'] = $this->pagination($view_data['path'], $view_data['total'], 10);
+        $view_data['pagination'] = $this->pagination($view_data['path'], $view_data['total'], $limit);
         $this->load->view('layout', $view_data);
+    }
+
+    // 商品內頁
+    public function product($id)
+    {
+        // 頁面資訊
+        $view_data = array(
+            'title' => "Shoper - Product",
+            'path' => 'product',
+            'page' => 'product.php',
+            'menu' => 'product',
+        );
+
+        $view_data['product'] = $this->mod_product->get_once($id);
+
+        $view_data['image_list'] = $this->mod_product->get_image_list($id);
+
+        if ($view_data['product']) {
+            $this->load->view('layout', $view_data);
+        } else {
+            redirect(base_url());
+        }
     }
     /* ************************************ *
      *                                      *

@@ -27,7 +27,7 @@ class Mod_category extends CI_Model
     public function get_all()
     {
         $res = $this->db->get('category_main')->result_array();
-        return $this->mod_product->get_category_products_total($res);
+        return $this->mod_product->get_Eachcategory_products_total($res);
     }
 
     // 取得特定分類

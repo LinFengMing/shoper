@@ -308,14 +308,15 @@ body {
   margin: 0;
   padding: 0;
   background-color: #fff;
+  display: table;
   overflow: auto;
 }
 
-/* line 20, ../sass/sass/index.sass */
+/* line 21, ../sass/sass/index.sass */
 .wrapper-content {
   width: 100%;
   height: 100%;
-  display: table;
+  display: block;
   background-image: url("../../assets/img/pattern/playstation-pattern.png");
 }
 
@@ -588,4 +589,323 @@ body {
 .news-spec {
   padding: 50px;
   margin: 20px;
+}
+
+/* line 1, ../sass/sass/component/_about.sass */
+.about-spec {
+  display: table;
+}
+/* line 4, ../sass/sass/component/_about.sass */
+.about-spec .as-left {
+  padding: 50px;
+  width: 50%;
+  min-height: 500px;
+  float: left;
+}
+/* line 10, ../sass/sass/component/_about.sass */
+.about-spec .as-left .asl-title {
+  font-size: 24px;
+  font-weight: 500;
+  font-family: "NotoSansCJKtc-Medium", "Helvetica", "Arial";
+  text-align: center;
+  letter-spacing: 0.9px;
+  color: #333A47;
+}
+/* line 13, ../sass/sass/component/_about.sass */
+.about-spec .as-left .asl-content {
+  font-size: 14px;
+  font-weight: normal;
+  font-family: "NotoSansCJKtc-Regular", "Helvetica", "Arial";
+  letter-spacing: 1.2px;
+  color: #333A47;
+}
+/* line 16, ../sass/sass/component/_about.sass */
+.about-spec .as-right {
+  width: 50%;
+  min-height: 500px;
+  float: right;
+}
+/* line 21, ../sass/sass/component/_about.sass */
+.about-spec .as-right .asr-image {
+  width: 100%;
+  min-height: 500px;
+  display: inline-block;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  -moz-background-origin: content;
+  -o-background-origin: content-box;
+  -webkit-background-origin: content;
+  background-origin: content-box;
+  background-image: url(../img/snappa_1465269679.jpg);
+}
+
+/* line 1, ../sass/sass/component/_products.sass */
+.products-spec {
+  padding: 50px;
+}
+
+/* line 5, ../sass/sass/component/_product.sass */
+.product-detals {
+  width: 100%;
+  height: auto;
+  display: table;
+  padding: 20px 20px 50px 20px;
+}
+/* line 11, ../sass/sass/component/_product.sass */
+.product-detals .pd-spec {
+  width: 100%;
+  min-height: 80px;
+  display: table;
+  padding: 0 10%;
+}
+@media screen and (max-width: 860px) {
+  /* line 11, ../sass/sass/component/_product.sass */
+  .product-detals .pd-spec {
+    padding: 0 20px;
+  }
+}
+/* line 20, ../sass/sass/component/_product.sass */
+.product-detals .productImage {
+  width: 50%;
+  height: auto;
+  display: table;
+  float: left;
+}
+@media screen and (max-width: 860px) {
+  /* line 20, ../sass/sass/component/_product.sass */
+  .product-detals .productImage {
+    width: 100%;
+  }
+}
+/* line 29, ../sass/sass/component/_product.sass */
+.product-detals .productImage .previewImage {
+  width: 300px;
+  height: 300px;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  -moz-background-origin: content;
+  -o-background-origin: content-box;
+  -webkit-background-origin: content;
+  background-origin: content-box;
+}
+/* line 42, ../sass/sass/component/_product.sass */
+.product-detals .productImage .smallImage {
+  width: 300px;
+  height: 100px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+/* line 49, ../sass/sass/component/_product.sass */
+.product-detals .productImage .smallImage > ul {
+  display: table;
+  padding: 0;
+}
+/* line 53, ../sass/sass/component/_product.sass */
+.product-detals .productImage .smallImage .itemImage {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  margin-left: 12px;
+  padding: 5px;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  -moz-background-origin: content;
+  -o-background-origin: content-box;
+  -webkit-background-origin: content;
+  background-origin: content-box;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+/* line 67, ../sass/sass/component/_product.sass */
+.product-detals .productImage .smallImage .itemImage:nth-child(1) {
+  margin-left: 0;
+}
+/* line 70, ../sass/sass/component/_product.sass */
+.product-detals .productImage .smallImage .itemImage:hover {
+  -moz-box-shadow: 2px 2px 2px #808080;
+  -webkit-box-shadow: 2px 2px 2px #808080;
+  box-shadow: 2px 2px 2px #808080;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+/* line 74, ../sass/sass/component/_product.sass */
+.product-detals .productInfo {
+  width: 50%;
+  height: auto;
+  display: table;
+  float: right;
+}
+@media screen and (max-width: 860px) {
+  /* line 74, ../sass/sass/component/_product.sass */
+  .product-detals .productInfo {
+    width: 100%;
+    padding: 20px;
+  }
+}
+@media screen and (max-width: 860px) and (min-width: 520px) {
+  /* line 74, ../sass/sass/component/_product.sass */
+  .product-detals .productInfo {
+    width: 100%;
+    padding: 20px 20%;
+  }
+}
+/* line 87, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemTitle {
+  font-size: 36px;
+  line-height: 50px;
+  display: block;
+}
+/* line 92, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemSubTitle {
+  font-size: 16px;
+  line-height: 30px;
+  display: inline;
+}
+/* line 97, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemPrice {
+  display: block;
+}
+/* line 100, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemPrice .priceCost {
+  color: #E765B1;
+  font-size: 32px;
+  line-height: 50px;
+  display: inline-bock;
+}
+/* line 106, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemPrice .priceOrigin {
+  font-size: 18px;
+  line-height: 50px;
+  text-decoration: line-through;
+  display: inline-block;
+}
+/* line 112, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemPrice .availableCount {
+  font-size: 14px;
+  line-height: 50px;
+  margin-right: 20px;
+  margin-top: 6px;
+  float: right;
+  display: inline-block;
+}
+/* line 120, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemSubject {
+  font-size: 12px;
+  -o-transform: scale(1);
+  -webkit-transform: scale(0.85714286);
+}
+/* line 125, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemPayment {
+  display: table;
+  margin: 10px 0;
+}
+/* line 129, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemQuantity {
+  display: table;
+}
+@media screen and (max-width: 520px) {
+  /* line 129, ../sass/sass/component/_product.sass */
+  .product-detals .productInfo .itemQuantity {
+    margin: 0 auto;
+  }
+}
+/* line 135, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemQuantity .btnQMinus, .product-detals .productInfo .itemQuantity .btnQPlus {
+  width: 30px;
+  height: 30px;
+  color: #000;
+  display: inline-block;
+  text-align: center;
+  line-height: 30px;
+  margin: 10px 5px;
+  border: 1px solid #777;
+  cursor: pointer;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+/* line 148, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemQuantity .btnQMinus:hover, .product-detals .productInfo .itemQuantity .btnQPlus:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
+  -moz-box-shadow: 2px 2px 2px #808080;
+  -webkit-box-shadow: 2px 2px 2px #808080;
+  box-shadow: 2px 2px 2px #808080;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+/* line 153, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemQuantity .inputQuantity {
+  width: 200px;
+  height: 30px;
+  color: #000;
+  display: inline-block;
+  text-align: center;
+  line-height: 30px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid #aaa;
+}
+/* line 165, ../sass/sass/component/_product.sass */
+.product-detals .productInfo .itemFormButton {
+  margin: 10px;
+  margin-left: 5px;
+}
+@media screen and (max-width: 520px) {
+  /* line 165, ../sass/sass/component/_product.sass */
+  .product-detals .productInfo .itemFormButton {
+    margin: 0 auto;
+    margin-top: 20px;
+    display: table;
+  }
+  /* line 174, ../sass/sass/component/_product.sass */
+  .product-detals .productInfo .itemFormButton .ui.button {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+/* line 178, ../sass/sass/component/_product.sass */
+.product-detals .productDetal {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: table;
+}
+/* line 184, ../sass/sass/component/_product.sass */
+.product-detals .productDetal .itemDetal {
+  padding: 30px;
+}
+/* line 186, ../sass/sass/component/_product.sass */
+.product-detals .productDetal .itemDetal img {
+  width: 100%;
 }

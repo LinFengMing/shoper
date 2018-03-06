@@ -37,14 +37,14 @@
 						<img src="<?=$vList['main_photo']?>" alt="<?=$vList['title']?>">
 					</div>
 					<div class="content">
-						<a href="#" class="header"><?=$vList['title']?></a>
+						<a href="product/<?= $vList['id'] ?>" class="header"><?=$vList['title']?></a>
 						<div class="meta">
 							<span class="cinema"><?=$vList['sub_title']?></span>
 						</div>
 						<div class="extra">
 							<div class="column">
-								<div class="ui red label">特價 $<?=$vList['cost']?></div>
-								<div class="ui blue label"><?=$vList['type']?></div>
+								<!-- <div class="ui red label">特價 $<?=$vList['cost']?></div>
+								<div class="ui blue label"><?=$vList['type']?></div> -->
 							</div>
 							<a href="product/<?=$vList['id']?>" class="ui right floated blue button">詳細內容</a>
 						</div>
@@ -52,6 +52,7 @@
 				</div>
 				<?php } ?>
 			</div>
+			<?=$pagination;?>
 		</div>
 	</div>
 </div>
